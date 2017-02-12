@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+#starter_generators gem
+gem "starter_generators", :github => "raghubetina/starter_generators"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.1'
