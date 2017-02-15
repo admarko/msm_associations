@@ -38,7 +38,7 @@
           as
           <a href="/characters/<%= Character.find_by(name: character.name).id%>"><%= character.name %></a>
         </li>
-      <% } %>
+        <% } %>
     </dd>
 
     </dl>
@@ -55,12 +55,14 @@
 
       <!-- Label and input for actor_id -->
       <div class="form-group">
-        <label for="actor_id" class="control-label">
-          Actor
-        </label>
-
-        <input type="text" id="actor_id" name="actor_id" placeholder="Actor" class="form-control" value="<%= @character.actor_id %>">
-      </div>
+               <label for="actor_id" class="control-label">
+                 Actor
+               </label>
+               <%= select_tag(:actor_id, options_from_collection_for_select(Actor.all, :id, :name), :class => "form-control") %>
+               <p class="help-block">
+                 <a href="/actors/new">or add a new actor</a>
+               </p>
+             </div>
 
       <!-- Label and input for name -->
       <div class="form-group">

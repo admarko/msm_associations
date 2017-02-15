@@ -23,11 +23,8 @@
       <dt>Filmography</dt>
     <dd>
       <% Character.where(actor_id: @actor.id).each{|character| %>
-        <li>
-          <a href="/characters/<%= character.id%>"><%= character.name %></a>
-          in
-          <a href="/movies/<%= Character.find_by(name: character.name).movie_id %>"> <%= Movie.find(Character.find_by(name: character.name).movie_id).title %> </a>
-          </li>
+        <li> <%= character.name %> in  <%= Movie.find(Character.find_by(name: character.name).movie_id).title %>
+        
         <% } %>
     </dd>
     </dl>
@@ -49,13 +46,14 @@
 
       <!-- Label and input for movie_id -->
       <div class="form-group">
-        <label for="movie_id" class="control-label">
-          Movie
-        </label>
-
-        <input type="text" id="movie_id" name="movie_id" placeholder="Movie" class="form-control" value="<%= @character.movie_id %>">
-
-      </div>
+               <label for="movie_id" class="control-label">
+                 Movie
+               </label>
+               <%= select_tag(:movie_id, options_from_collection_for_select(Movie.all, :id, :title), :class => "form-control") %>
+               <p class="help-block">
+                 <a href="/movies/new">or add a new movie</a>
+               </p>
+             </div>
 
       <!-- Label and input for actor_id -->
       <div class="form-group">
